@@ -1,6 +1,7 @@
 {
   "extends": "@primittive/eslint-config/node",
   "rules": {
-    "no-unused-vars": "warn"
+    "no-unused-vars": "warn",
+    "camelcase": "off"
   }
 }
