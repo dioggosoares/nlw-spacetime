@@ -1,0 +1,16 @@
+version: '3.7'
+
+volumes:
+  postgresql_data:
+
+services:
+    postgres:
+        container_name: spacetime
+        environment:
+            - POSTGRES_USER=diogo
+            - POSTGRES_PASSWORD=docker123
+        ports:
+            - '5432:5432'
+        volumes:
+            - 'postgresql_data:/var/lib/postgresql'
+        image: 'postgres'
