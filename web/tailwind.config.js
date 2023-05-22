@@ -76,6 +76,7 @@ module.exports = {
       },
 
       blur: {
+        md: '100px',
         full: '194px',
       },
 
@@ -96,5 +97,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 }
