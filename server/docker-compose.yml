@@ -1,16 +1,15 @@
 version: '3.7'
 
 volumes:
-  postgresql_data:
+  mysql_data:
 
 services:
-    postgres:
+    mysql:
         container_name: spacetime
         environment:
-            - POSTGRES_USER=diogo
-            - POSTGRES_PASSWORD=docker123
+            - MYSQL_ROOT_PASSWORD=docker123
         ports:
-            - '5432:5432'
+            - '3306:3306'
         volumes:
-            - 'postgresql_data:/var/lib/postgresql'
-        image: 'postgres'
+            - 'mysql_data:/var/lib/mysql'
+        image: 'mysql:latest'

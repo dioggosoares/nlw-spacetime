@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -25,7 +25,7 @@ model Memory {
   userId String
 
   coverUrl   String
-  content    String
+  content    String   @db.LongText()
   isPublic   Boolean  @default(false)
   created_at DateTime @default(now())
 

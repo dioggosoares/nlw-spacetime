@@ -10,6 +10,8 @@ import { Profile } from '@/components/Profile'
 import { SignIn } from '@/components/Signin'
 import { Copyright } from '@/components/Copyright'
 
+import { api } from '@/lib/api'
+
 import './globals.css'
 
 const roboto = Roboto({ subsets: ['latin'], variable: '--font-roboto' })
@@ -25,8 +27,14 @@ export const metadata = {
     'Uma cápsula do tempo construída com React, Next.js, TailwindCSS e TypeScript',
 }
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: ReactNode
+}) {
   const isAuthenticated = cookies().has('token')
+
+  const hasUsers = await api.get('/users')
 
   return (
     <html lang="en">
@@ -50,7 +58,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <div className="absolute bottom-0 right-2 top-0 w-2 bg-stripes" />
 
             {/* Sign In */}
-            {isAuthenticated ? <Profile /> : <SignIn />}
+            {isAuthenticated && hasUsers.data.length !== 0 ? (
+              <Profile />
+            ) : (
+              <SignIn />
+            )}
             {/* Hero */}
             <Hero />
 
