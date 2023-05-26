@@ -1,7 +1,6 @@
 'use client'
 
 import { ChangeEvent, useEffect, useState } from 'react'
-import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Camera, ChevronLeft } from 'lucide-react'
@@ -15,6 +14,7 @@ dayjs.locale(ptBr)
 
 interface MemoryProps {
   token?: string | null
+  id?: string | null
 }
 
 interface IMemory {
@@ -25,10 +25,9 @@ interface IMemory {
   created_at: string
 }
 
-export function Memory({ token }: MemoryProps) {
+export function Memory({ token, id }: MemoryProps) {
   const [memory, setMemory] = useState<IMemory>()
   const [checked, setChecked] = useState<boolean | undefined>(false)
-  const { id } = useParams()
 
   async function getMemory() {
     const response = await api.get(`/memories/${id}`, {

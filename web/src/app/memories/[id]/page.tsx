@@ -3,7 +3,13 @@ import { cookies } from 'next/headers'
 import { Memory } from '@/components/Memory'
 import { EmptyMemories } from '@/components/EmptyMemories'
 
-export default function Memories() {
+interface MemoriesProps {
+  params: {
+    id: string
+  }
+}
+
+export default function Memories({ params }: MemoriesProps) {
   const isAuthenticated = cookies().has('token')
 
   if (!isAuthenticated) {
@@ -14,7 +20,7 @@ export default function Memories() {
 
   return (
     <section className="flex flex-1 flex-col gap-4 p-10">
-      <Memory token={token} />
+      <Memory token={token} id={params.id} />
     </section>
   )
 }
